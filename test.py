@@ -45,16 +45,16 @@ for name, shape in layer_order:
         if "weight" in name and not name.endswith("bias"):
             critic_layers.append(nn.ReLU())  # Assuming ReLU activations
 
-# === Filter unexpected keys ===
-filtered_state_dict = {k: v for k, v in state_dict.items() if k in model.state_dict()}
-
 # === Create model ===
 model = ActorCriticModel(actor_layers, critic_layers)
-model.load_state_dict(filtered_state_dict)
 model.eval()
 
 print("\n✅ Model reconstructed and weights loaded.")
 print(model)
+
+# === Filter unexpected keys ===
+filtered_state_dict = {k: v for k, v in state_dict.items() if k in model.state_dict()}
+model.load_state_dict(filtered_state_dict)
 
 # === Inference benchmarking ===
 # You may need to change input_dim if your model expects something else
@@ -67,10 +67,10 @@ for _ in range(10):
 
 # Time it
 start = time.perf_counter()
-for _ in range(100):
+for _ in range(num_runs := 10000):
     _ = model(dummy_input)
 end = time.perf_counter()
 
-avg_time = (end - start) / 100
-print(f"\n🚀 Average inference time over 100 runs: {avg_time * 1e3:.3f} ms")
+avg_time = (end - start) / num_runs
+print(f"\n🚀 Average inference time over {num_runs} runs: {avg_time * 1e3:.3f} ms")
 # %%

@@ -1,0 +1,46 @@
+
+📦 Checkpoint loaded. Inspecting layers:
+
+std                                      (19,)
+actor.0.weight                           (512, 256)
+actor.0.bias                             (512,)
+actor.2.weight                           (256, 512)
+actor.2.bias                             (256,)
+actor.4.weight                           (128, 256)
+actor.4.bias                             (128,)
+actor.6.weight                           (19, 128)
+actor.6.bias                             (19,)
+critic.0.weight                          (512, 256)
+critic.0.bias                            (512,)
+critic.2.weight                          (256, 512)
+critic.2.bias                            (256,)
+critic.4.weight                          (128, 256)
+critic.4.bias                            (128,)
+critic.6.weight                          (1, 128)
+critic.6.bias                            (1,)
+
+✅ Model reconstructed and weights loaded.
+ActorCriticModel(
+  (actor): Sequential(
+    (0): Linear(in_features=256, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=128, out_features=19, bias=True)
+    (7): ReLU()
+  )
+  (critic): Sequential(
+    (0): Linear(in_features=256, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=256, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=128, out_features=1, bias=True)
+    (7): ReLU()
+  )
+)
+
+🚀 Average inference time over 10000 runs: 2.437 ms
